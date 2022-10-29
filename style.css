@@ -1,0 +1,57 @@
+body {
+  background-color: rgba(0, 0, 0, 0.83);
+  color: white;
+  font-family: sans-serif;
+}
+
+h3 {
+  border-bottom: 1px solid white;
+  border-bottom-right-radius: 0.7rem;
+  border-width: 0.3rem;
+  display: inline-block;
+  width: 7rem;
+}
+
+#output {
+  width: 100%;
+}
+
+#output button {
+  border-radius: 4px;
+  font-size: 0.5rem;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 1rem;
+}
+
+footer p {
+  font-size: 0.5rem;
+  margin: 0;
+}
+
+#outer {
+  width: 30rem;
+  margin: auto;
+}
+
+#saveButton {
+  font-size: 3rem;
+}
+
+#buttonsDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+#saveButtonDiv {
+  display: flex;
+}
+
+#twoButtonsDiv {
+  display: flex;
+  justify-content: end;
+}
