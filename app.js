@@ -17,6 +17,7 @@ function fetchText(event) {
   newList.textContent = content;
   ulElement.append(newList);
   newList.addEventListener("dblclick", lineThrough);
+  textArea.value = "";
 }
 
 function save() {
