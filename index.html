@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-  <title>Sunex Notebook</title>
-  <script src="app.js" charset="utf-8" defer></script>
-</head>
-<body>
-  <div id="outer">
-    <div id="header">
-      <h3>Notebook</h3>
-    </div>
-    <div id="form-div">
-      <form class="form-element" action="index.html">
-        <input id="text-area" type="text">
-        <br>
-        <button id="add-button" type="submit">Add</button>
-        <button id="reset-button" type="reset">Clear</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Sunex Notebook</title>
+    <script src="app.js" charset="utf-8" defer></script>
+  </head>
+  <body>
+    <div id="log-in">
+      <form id="passwordForm" action="#">
+        <label for="password">Enter Password</label>
+        <input id="password" type="password" placeholder="password" />
+        <button style="display: none" id="passwordButton" type="submit">
+          Submit
+        </button>
       </form>
     </div>
-    <hr>
-    <div id="output">
-      <h5>To Do List :</h5>
-      <ul id="ul"></ul>
-      <div id="buttonsDiv">
-        <div id="saveButtonDiv">
-          <button>Save As .txt</button>
-        </div>
-        <div id="twoButtonsDiv">
-          <button id="delete">Delete Last</button>
-          <button id="clear-all">Clear All</button>
+    <div id="outer">
+      <div id="header">
+        <h3>Notebook</h3>
+      </div>
+      <div id="form-div">
+        <form class="form-element" action="index.html">
+          <input id="text-area" type="text" />
+          <br />
+          <button id="add-button" type="submit">Add</button>
+          <button id="reset-button" type="reset">Clear</button>
+        </form>
+      </div>
+      <hr />
+      <div id="output">
+        <h5>To Do List :</h5>
+        <ul id="ul"></ul>
+        <div id="buttonsDiv">
+          <div id="saveButtonDiv">
+            <button>Save As .txt</button>
+          </div>
+          <div id="twoButtonsDiv">
+            <button id="delete">Delete Last</button>
+            <button id="clear-all">Clear All</button>
+            <button id="lockButton">Lock Screen</button>
+          </div>
         </div>
       </div>
+      <footer>
+        <p>
+          <a href="https://github.com/ozymeric"><i>designed by @ozymeric</i></a>
+        </p>
+      </footer>
     </div>
-    <footer>
-      <p><a href="https://github.com/ozymeric"><i>designed by @ozymeric</i></a></p>
-    </footer>
-  </div>
-</body>
+  </body>
 </html>
