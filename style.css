@@ -1,7 +1,9 @@
 body {
   background-color: rgba(0, 0, 0, 0.83);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.83), rgba(8,8,8,0.5));
   color: white;
   font-family: sans-serif;
+  min-height: 97vh;
 }
 
 #outer {
