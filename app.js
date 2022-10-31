@@ -7,12 +7,14 @@ const formElement = document.querySelector(".form-element");
 const textArea = document.querySelector("#text-area");
 const addButton = document.getElementById("add-button");
 const ulElement = document.querySelector("#ul");
+const ulElement2 = document.querySelector("#ul2");
 const saveButton = document.querySelector("#saveButtonDiv button");
 const deleteButton = document.querySelector("#delete");
 const clearAllButton = document.querySelector("#clear-all");
 const lockButton = document.querySelector("#lockButton");
 const passwordInput = document.querySelector("#password");
 const passwordButton = document.querySelector("#passwordButton");
+const addReminderButton = document.getElementById("reminder-button");
 
 let myVar = setTimeout(lockScreen, 300000);
 
@@ -108,10 +110,10 @@ function displayTime() {
     second;
   }
 
-  if (day < 10) {
-    day = "0" + day;
+  if (date < 10) {
+    date = "0" + date;
   } else {
-    day;
+    date;
   }
 
   clockPar.innerHTML =
@@ -247,6 +249,11 @@ function lineThrough() {
   this.style.color = "grey";
 }
 
+function addReminder() {
+  document.getElementById("outer").style.display = "none";
+  document.getElementById("reminder-config").style.display = "flex";
+}
+
 // _____________ EVENT LISTENERS:
 
 addButton.addEventListener("click", fetchText);
@@ -257,3 +264,4 @@ passwordButton.addEventListener("click", releaseNotebook);
 bodyElement.addEventListener("mousemove", lockScreenTimeout);
 bodyElement.addEventListener("mousestop", lockScreenTimeout);
 lockButton.addEventListener("click", lockScreen);
+addReminderButton.addEventListener("click", addReminder);
