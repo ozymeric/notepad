@@ -1,5 +1,7 @@
 // _____________ VARIABLES:
 
+const clockPar = document.getElementById("clock-p");
+
 const bodyElement = document.querySelector("body");
 const formElement = document.querySelector(".form-element");
 const textArea = document.querySelector("#text-area");
@@ -15,6 +17,120 @@ const passwordButton = document.querySelector("#passwordButton");
 let myVar = setTimeout(lockScreen, 300000);
 
 // _____________ FUNCTIONS:
+
+function displayTime() {
+  let d = new Date();
+  let hour = d.getHours();
+  let minute = d.getMinutes();
+  let second = d.getSeconds();
+  let day = d.getDay();
+  let date = d.getDate();
+  let month = d.getMonth();
+  let year = d.getFullYear();
+
+  switch (new Date().getDay()) {
+    case 0:
+      day = "Sunday";
+      break;
+    case 1:
+      day = "Monday";
+      break;
+    case 2:
+      day = "Tuesday";
+      break;
+    case 3:
+      day = "Wednesday";
+      break;
+    case 4:
+      day = "Thursday";
+      break;
+    case 5:
+      day = "Friday";
+      break;
+    case 6:
+      day = "Saturday";
+  }
+
+  switch (month) {
+    case 0:
+      month = "JAN";
+      break;
+    case 1:
+      month = "FEB";
+      break;
+    case 2:
+      month = "MAR";
+      break;
+    case 3:
+      month = "APR";
+      break;
+    case 4:
+      month = "MAY";
+      break;
+    case 5:
+      month = "JUN";
+      break;
+    case 6:
+      month = "JUL";
+      break;
+    case 7:
+      month = "AUG";
+      break;
+    case 8:
+      month = "SEP";
+      break;
+    case 9:
+      month = "OCT";
+      break;
+    case 10:
+      month = "NOV";
+      break;
+    case 11:
+      month = "DEC";
+      break;
+  }
+
+  if (hour < 10) {
+    hour = "0" + hour;
+  } else {
+    hour;
+  }
+
+  if (minute < 10) {
+    minute = "0" + minute;
+  } else {
+    minute;
+  }
+
+  if (second < 10) {
+    second = "0" + second;
+  } else {
+    second;
+  }
+
+  if (day < 10) {
+    day = "0" + day;
+  } else {
+    day;
+  }
+
+  clockPar.innerHTML =
+    day +
+    " - " +
+    date +
+    "/" +
+    month +
+    "/" +
+    year +
+    " - " +
+    hour +
+    ":" +
+    minute +
+    ":" +
+    second;
+}
+
+setInterval(displayTime, 1000);
 
 function releaseNotebook(e) {
   e.preventDefault();
@@ -61,7 +177,53 @@ function save() {
   var file = new Blob([stringData], { type: "text" });
   const anchor = document.createElement("a");
   anchor.href = URL.createObjectURL(file);
-  anchor.download = "notebook.txt";
+
+  let d = new Date();
+  let hour = d.getHours();
+  let minute = d.getMinutes();
+  let date = d.getDate();
+  let month = d.getMonth();
+
+  switch (month) {
+    case 0:
+      month = "JAN";
+      break;
+    case 1:
+      month = "FEB";
+      break;
+    case 2:
+      month = "MAR";
+      break;
+    case 3:
+      month = "APR";
+      break;
+    case 4:
+      month = "MAY";
+      break;
+    case 5:
+      month = "JUN";
+      break;
+    case 6:
+      month = "JUL";
+      break;
+    case 7:
+      month = "AUG";
+      break;
+    case 8:
+      month = "SEP";
+      break;
+    case 9:
+      month = "OCT";
+      break;
+    case 10:
+      month = "NOV";
+      break;
+    case 11:
+      month = "DEC";
+      break;
+  }
+
+  anchor.download = date + "" + month + "-" + hour + "." + minute + ".txt";
   anchor.click();
 }
 
