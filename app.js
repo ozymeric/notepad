@@ -12,9 +12,44 @@ const saveButton = document.querySelector("#saveButtonDiv button");
 const deleteButton = document.querySelector("#delete");
 const clearAllButton = document.querySelector("#clear-all");
 const lockButton = document.querySelector("#lockButton");
+const reminderLockButton = document.querySelector("#lockButton2");
 const passwordInput = document.querySelector("#password");
 const passwordButton = document.querySelector("#passwordButton");
 const addReminderButton = document.getElementById("reminder-button");
+const configAddReminderButton = document.getElementById("configAddButton");
+const configResetButton = document.getElementById("configResetButton");
+const configMessage = document.getElementById("configMessage");
+const timer = document.getElementById("time");
+const reminderSaveButton = document.getElementById("reminderSaveButton");
+const reminderDeleteLastButton = document.getElementById("reminderDeleteLastButton");
+const reminderClearButton = document.getElementById("reminderClearButton");
+const outerConfig = document.getElementById("outer-config");
+
+
+function fetchReminderData(e) {
+  e.preventDefault;
+  messageData = configMessage.value;
+  timerData = timer.value;
+  content = (messageData + " _ (Reminder @" + timerData + ")");
+  console.log(messageData + " _ (Reminder @" + timerData + ")");
+  let newList = document.createElement("LI");
+  newList.textContent = content;
+  ulElement2.append(newList);
+  newList.addEventListener("dblclick", lineThrough);
+  configResetButton.click();
+  closeConfigWindow();
+}
+
+function fetchText(event) {
+  event.preventDefault();
+  content = textArea.value;
+  let newList = document.createElement("LI");
+  newList.textContent = content;
+  ulElement.append(newList);
+  newList.addEventListener("dblclick", lineThrough);
+  textArea.value = "";
+}
+
 
 let myVar = setTimeout(lockScreen, 300000);
 
@@ -156,16 +191,6 @@ function lockScreenTimeout() {
   myVar = setTimeout(lockScreen, 300000);
 }
 
-function fetchText(event) {
-  event.preventDefault();
-  content = textArea.value;
-  let newList = document.createElement("LI");
-  newList.textContent = content;
-  ulElement.append(newList);
-  newList.addEventListener("dblclick", lineThrough);
-  textArea.value = "";
-}
-
 function save() {
   const contentArray = [];
   allListElements = document.querySelectorAll("LI");
@@ -229,13 +254,90 @@ function save() {
   anchor.click();
 }
 
+
+function reminderSave() {
+  const contentArray = [];
+  allListElements = document.querySelectorAll("#ul2 LI");
+  for (i of allListElements) {
+    console.log(i.textContent);
+    contentArray.push(i.textContent);
+    console.log(contentArray);
+  }
+  const stringData = JSON.stringify(contentArray);
+  console.log(stringData);
+  var file = new Blob([stringData], { type: "text" });
+  const anchor = document.createElement("a");
+  anchor.href = URL.createObjectURL(file);
+
+  let d = new Date();
+  let hour = d.getHours();
+  let minute = d.getMinutes();
+  let date = d.getDate();
+  let month = d.getMonth();
+
+  switch (month) {
+    case 0:
+      month = "JAN";
+      break;
+    case 1:
+      month = "FEB";
+      break;
+    case 2:
+      month = "MAR";
+      break;
+    case 3:
+      month = "APR";
+      break;
+    case 4:
+      month = "MAY";
+      break;
+    case 5:
+      month = "JUN";
+      break;
+    case 6:
+      month = "JUL";
+      break;
+    case 7:
+      month = "AUG";
+      break;
+    case 8:
+      month = "SEP";
+      break;
+    case 9:
+      month = "OCT";
+      break;
+    case 10:
+      month = "NOV";
+      break;
+    case 11:
+      month = "DEC";
+      break;
+  }
+
+  anchor.download = "reminders" + date + "" + month + "-" + hour + "." + minute + ".txt";
+  anchor.click();
+}
+
 function deleteLast() {
-  allListElements = document.querySelectorAll("LI");
+  allListElements = document.querySelectorAll("#ul LI");
+  allListElements[allListElements.length - 1].remove();
+}
+
+
+function reminderDeleteLast() {
+  allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
 }
 
 function clearAll() {
   allListElements = document.querySelectorAll("LI");
+  for (i of allListElements) {
+    i.remove();
+  }
+}
+
+function reminderClearAll() {
+  allListElements = document.querySelectorAll("#ul2 LI");
   for (i of allListElements) {
     i.remove();
   }
@@ -251,7 +353,14 @@ function lineThrough() {
 
 function addReminder() {
   document.getElementById("outer").style.display = "none";
+  document.getElementById("outer-config").style.display = "block";
   document.getElementById("reminder-config").style.display = "flex";
+}
+
+function closeConfigWindow() {
+  document.getElementById("outer").style.display = "block";
+  document.getElementById("outer-config").style.display = "none";
+  document.getElementById("reminder-config").style.display = "none";
 }
 
 // _____________ EVENT LISTENERS:
@@ -264,4 +373,13 @@ passwordButton.addEventListener("click", releaseNotebook);
 bodyElement.addEventListener("mousemove", lockScreenTimeout);
 bodyElement.addEventListener("mousestop", lockScreenTimeout);
 lockButton.addEventListener("click", lockScreen);
+lockButton2.addEventListener("click", lockScreen);
 addReminderButton.addEventListener("click", addReminder);
+configAddReminderButton.addEventListener("click", fetchReminderData);
+reminderDeleteLastButton.addEventListener("click", reminderDeleteLast);
+reminderClearButton.addEventListener("click", reminderClearAll);
+reminderSaveButton.addEventListener("click", reminderSave);
+outerConfig.addEventListener("click",closeConfigWindow);
+document.getElementById("reminder-config").addEventListener("click", function(e) {
+  e.stopPropagation();
+})
