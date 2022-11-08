@@ -357,6 +357,14 @@ function lineThrough() {
   }
   this.style.textDecoration = "line-through";
   this.style.color = "grey";
+  let deletedElement = this.textContent.slice(-6, -1);
+  let indexCount = -1;
+  for (const element of reminderTimeArray) {
+    indexCount++;
+    if (element === deletedElement) {
+      delete reminderTimeArray[indexCount];
+    }
+  }
 }
 
 function addReminder() {
