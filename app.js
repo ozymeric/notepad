@@ -28,6 +28,7 @@ const reminderClearButton = document.getElementById("reminderClearButton");
 const outerConfig = document.getElementById("outer-config");
 const alertOuterConfig = document.getElementById("alert-outer-config");
 const alertReminderConfig = document.getElementById("alert-reminder-config");
+const reminderPopUpMessage = document.getElementById("reminder-message-pop-up");
 
 reminderTimeArray = [];
 
@@ -404,6 +405,8 @@ function reminderTimeCheck() {
       alertOuterConfig.style.display = "flex";
       reminderAudio.play();
       delete reminderTimeArray[inndex];
+      // This is how we change the pop up reminder message!!!!!!
+      // reminderPopUpMessage.textContent = "aa";
       inndex = -1;
       return;
     }
