@@ -31,7 +31,7 @@ const alertReminderConfig = document.getElementById("alert-reminder-config");
 
 reminderTimeArray = [];
 
-var reminderAudio = new Audio("sound/crash.mp3");
+var reminderAudio = new Audio("sound/reminder.wav");
 
 function fetchReminderData(e) {
   e.preventDefault;
