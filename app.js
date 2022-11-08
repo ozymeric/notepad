@@ -31,6 +31,8 @@ const alertReminderConfig = document.getElementById("alert-reminder-config");
 
 reminderTimeArray = [];
 
+var reminderAudio = new Audio("sound/crash.mp3");
+
 function fetchReminderData(e) {
   e.preventDefault;
   messageData = configMessage.value;
@@ -390,6 +392,7 @@ function reminderTimeCheck() {
     inndex++;
     if (time === currentTimeFetch) {
       alertOuterConfig.style.display = "flex";
+      reminderAudio.play();
       delete reminderTimeArray[inndex];
       inndex = -1;
       return;
