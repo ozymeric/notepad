@@ -333,6 +333,7 @@ function deleteLast() {
 function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
+  reminderTimeArray.pop();
 }
 
 function clearAll() {
@@ -347,6 +348,7 @@ function reminderClearAll() {
   for (i of allListElements) {
     i.remove();
   }
+  reminderTimeArray = [];
 }
 
 function lineThrough() {
