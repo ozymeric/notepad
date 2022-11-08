@@ -21,16 +21,22 @@ const configResetButton = document.getElementById("configResetButton");
 const configMessage = document.getElementById("configMessage");
 const timer = document.getElementById("time");
 const reminderSaveButton = document.getElementById("reminderSaveButton");
-const reminderDeleteLastButton = document.getElementById("reminderDeleteLastButton");
+const reminderDeleteLastButton = document.getElementById(
+  "reminderDeleteLastButton"
+);
 const reminderClearButton = document.getElementById("reminderClearButton");
 const outerConfig = document.getElementById("outer-config");
+const alertOuterConfig = document.getElementById("alert-outer-config");
+const alertReminderConfig = document.getElementById("alert-reminder-config");
 
+reminderTimeArray = [];
 
 function fetchReminderData(e) {
   e.preventDefault;
   messageData = configMessage.value;
   timerData = timer.value;
-  content = (messageData + " _ (Reminder @" + timerData + ")");
+  reminderTimeArray.push(timerData);
+  content = messageData + " _ (Reminder @" + timerData + ")";
   console.log(messageData + " _ (Reminder @" + timerData + ")");
   let newList = document.createElement("LI");
   newList.textContent = content;
@@ -49,7 +55,6 @@ function fetchText(event) {
   newList.addEventListener("dblclick", lineThrough);
   textArea.value = "";
 }
-
 
 let myVar = setTimeout(lockScreen, 300000);
 
@@ -254,7 +259,6 @@ function save() {
   anchor.click();
 }
 
-
 function reminderSave() {
   const contentArray = [];
   allListElements = document.querySelectorAll("#ul2 LI");
@@ -314,7 +318,8 @@ function reminderSave() {
       break;
   }
 
-  anchor.download = "reminders" + date + "" + month + "-" + hour + "." + minute + ".txt";
+  anchor.download =
+    "reminders" + date + "" + month + "-" + hour + "." + minute + ".txt";
   anchor.click();
 }
 
@@ -322,7 +327,6 @@ function deleteLast() {
   allListElements = document.querySelectorAll("#ul LI");
   allListElements[allListElements.length - 1].remove();
 }
-
 
 function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
@@ -363,6 +367,38 @@ function closeConfigWindow() {
   document.getElementById("reminder-config").style.display = "none";
 }
 
+function reminderTimeCheck() {
+  let currentTime = new Date();
+  let currentHour = currentTime.getHours();
+  let currentMinute = currentTime.getMinutes();
+
+  if (currentHour < 10) {
+    currentHour = "0" + currentHour;
+  } else {
+    currentHour;
+  }
+
+  if (currentMinute < 10) {
+    currentMinute = "0" + currentMinute;
+  } else {
+    currentMinute;
+  }
+
+  let currentTimeFetch = currentHour + ":" + currentMinute;
+  let inndex = -1;
+  for (const time of reminderTimeArray) {
+    inndex++;
+    if (time === currentTimeFetch) {
+      alertOuterConfig.style.display = "flex";
+      delete reminderTimeArray[inndex];
+      inndex = -1;
+      return;
+    }
+  }
+  inndex = -1;
+}
+setInterval(reminderTimeCheck, 1000);
+
 // _____________ EVENT LISTENERS:
 
 addButton.addEventListener("click", fetchText);
@@ -379,7 +415,12 @@ configAddReminderButton.addEventListener("click", fetchReminderData);
 reminderDeleteLastButton.addEventListener("click", reminderDeleteLast);
 reminderClearButton.addEventListener("click", reminderClearAll);
 reminderSaveButton.addEventListener("click", reminderSave);
-outerConfig.addEventListener("click",closeConfigWindow);
-document.getElementById("reminder-config").addEventListener("click", function(e) {
-  e.stopPropagation();
-})
+outerConfig.addEventListener("click", closeConfigWindow);
+document
+  .getElementById("reminder-config")
+  .addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+alertReminderConfig.addEventListener("click", function () {
+  alertOuterConfig.style.display = "none";
+});
