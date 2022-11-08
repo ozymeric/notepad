@@ -189,6 +189,7 @@ function releaseNotebook(e) {
     alert("Invalid Password!");
     passwordInput.value = "";
   }
+  textArea.focus();
 }
 
 function lockScreen() {
@@ -377,12 +378,15 @@ function addReminder() {
   document.getElementById("outer").style.display = "none";
   document.getElementById("outer-config").style.display = "block";
   document.getElementById("reminder-config").style.display = "flex";
+  document.getElementById("configMessage").focus(); 
+
 }
 
 function closeConfigWindow() {
   document.getElementById("outer").style.display = "block";
   document.getElementById("outer-config").style.display = "none";
   document.getElementById("reminder-config").style.display = "none";
+  textArea.focus();
 }
 
 function reminderTimeCheck() {

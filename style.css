@@ -29,6 +29,10 @@ body {
   height: 2rem;
 }
 
+#passwordButton {
+  margin: 0.6rem;
+}
+
 #outer {
   position: relative;
   width: 30rem;
