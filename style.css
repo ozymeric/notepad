@@ -3,7 +3,7 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.83), rgba(8, 8, 8, 0.5));
   color: white;
   font-family: sans-serif;
-  min-height: 97vh;
+  min-height: 93vh;
 }
 
 #log-in {
@@ -291,4 +291,8 @@ i:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: larger;
+  font-weight: bolder;
+  margin-top: -10rem;
 }
+

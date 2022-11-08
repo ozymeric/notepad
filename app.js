@@ -31,12 +31,14 @@ const alertReminderConfig = document.getElementById("alert-reminder-config");
 const reminderPopUpMessage = document.getElementById("reminder-message-pop-up");
 
 reminderTimeArray = [];
+reminderMessageArray = [];
 
 var reminderAudio = new Audio("sound/reminder.wav");
 
 function fetchReminderData(e) {
   e.preventDefault;
   messageData = configMessage.value;
+  reminderMessageArray.push(messageData);
   timerData = timer.value;
   reminderTimeArray.push(timerData);
   content = messageData + " _ (Reminder @" + timerData + ")";
@@ -335,6 +337,7 @@ function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
   reminderTimeArray.pop();
+  reminderMessageArray.pop();
 }
 
 function clearAll() {
@@ -350,6 +353,7 @@ function reminderClearAll() {
     i.remove();
   }
   reminderTimeArray = [];
+  reminderMessageArray = [];
 }
 
 function lineThrough() {
@@ -364,6 +368,7 @@ function lineThrough() {
     indexCount++;
     if (element === deletedElement) {
       delete reminderTimeArray[indexCount];
+      delete reminderMessageArray[indexCount];
     }
   }
 }
@@ -405,14 +410,14 @@ function reminderTimeCheck() {
       alertOuterConfig.style.display = "flex";
       reminderAudio.play();
       delete reminderTimeArray[inndex];
-      // This is how we change the pop up reminder message!!!!!!
-      // reminderPopUpMessage.textContent = "aa";
+      reminderPopUpMessage.textContent = "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
       inndex = -1;
       return;
     }
   }
   inndex = -1;
 }
+
 setInterval(reminderTimeCheck, 1000);
 
 // _____________ EVENT LISTENERS:
