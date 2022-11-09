@@ -341,7 +341,7 @@ function reminderDeleteLast() {
 }
 
 function clearAll() {
-  allListElements = document.querySelectorAll("LI");
+  allListElements = document.querySelectorAll("#ul LI");
   for (i of allListElements) {
     i.remove();
   }
