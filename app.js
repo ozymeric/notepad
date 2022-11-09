@@ -414,7 +414,15 @@ function reminderTimeCheck() {
       delete reminderTimeArray[inndex];
       reminderPopUpMessage.textContent =
         "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
+
+      for (const i of document.querySelectorAll("LI")) {
+        if (i.textContent.slice(-6, -1) === time);
+        i.style.textDecoration = "line-through";
+        i.style.color = "grey";
+      }
+
       inndex = -1;
+
       return;
     }
   }
