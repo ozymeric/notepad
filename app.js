@@ -60,7 +60,7 @@ function fetchText(event) {
   textArea.value = "";
 }
 
-let myVar = setTimeout(lockScreen, 300000);
+let myVar = setTimeout(lockScreen, 600000);
 
 // _____________ FUNCTIONS:
 
@@ -455,3 +455,7 @@ document
 alertReminderConfig.addEventListener("click", function () {
   alertOuterConfig.style.display = "none";
 });
+
+function areYouSure() {
+  return "hello";
+}
