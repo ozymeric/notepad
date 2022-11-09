@@ -27,6 +27,7 @@ body {
   margin-top: 0.5rem;
   width: 12rem;
   height: 2rem;
+  border-radius: 0.5rem;
 }
 
 #passwordButton {
@@ -79,6 +80,7 @@ h5 {
 
 button:hover {
   box-shadow: 2px 3px rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
 }
 
 #form-div {
