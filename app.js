@@ -35,7 +35,7 @@ reminderMessageArray = [];
 var reminderAudio = new Audio("sound/reminder.wav");
 
 function fetchReminderData(e) {
-  e.preventDefault;
+  e.preventDefault();
   messageData = configMessage.value;
   reminderMessageArray.push(messageData);
   timerData = timer.value;
@@ -377,8 +377,7 @@ function addReminder() {
   document.getElementById("outer").style.display = "none";
   document.getElementById("outer-config").style.display = "block";
   document.getElementById("reminder-config").style.display = "flex";
-  document.getElementById("configMessage").focus(); 
-
+  document.getElementById("configMessage").focus();
 }
 
 function closeConfigWindow() {
@@ -413,7 +412,8 @@ function reminderTimeCheck() {
       alertOuterConfig.style.display = "flex";
       reminderAudio.play();
       delete reminderTimeArray[inndex];
-      reminderPopUpMessage.textContent = "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
+      reminderPopUpMessage.textContent =
+        "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
       inndex = -1;
       return;
     }
