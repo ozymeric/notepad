@@ -203,7 +203,7 @@ function lockScreenTimeout() {
 
 function save() {
   const contentArray = [];
-  allListElements = document.querySelectorAll("LI");
+  allListElements = document.querySelectorAll("#ul LI");
   for (i of allListElements) {
     console.log(i.textContent);
     contentArray.push(i.textContent);
