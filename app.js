@@ -60,7 +60,7 @@ function fetchText(event) {
   textArea.value = "";
 }
 
-let myVar = setTimeout(lockScreen, 300000);
+let myVar = setTimeout(lockScreen, 3600000);
 
 // _____________ FUNCTIONS:
 
@@ -198,12 +198,12 @@ function lockScreen() {
 
 function lockScreenTimeout() {
   clearTimeout(myVar);
-  myVar = setTimeout(lockScreen, 300000);
+  myVar = setTimeout(lockScreen, 3600000);
 }
 
 function save() {
   const contentArray = [];
-  allListElements = document.querySelectorAll("LI");
+  allListElements = document.querySelectorAll("#ul LI");
   for (i of allListElements) {
     console.log(i.textContent);
     contentArray.push(i.textContent);
@@ -341,7 +341,7 @@ function reminderDeleteLast() {
 }
 
 function clearAll() {
-  allListElements = document.querySelectorAll("LI");
+  allListElements = document.querySelectorAll("#ul LI");
   for (i of allListElements) {
     i.remove();
   }
@@ -414,7 +414,16 @@ function reminderTimeCheck() {
       delete reminderTimeArray[inndex];
       reminderPopUpMessage.textContent =
         "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
+
+      for (const i of document.querySelectorAll("#ul2 LI")) {
+        if (i.textContent.slice(-6, -1) === time) {
+          i.style.textDecoration = "line-through";
+          i.style.color = "grey";
+        }
+      }
+
       inndex = -1;
+
       return;
     }
   }
@@ -447,3 +456,7 @@ document
 alertReminderConfig.addEventListener("click", function () {
   alertOuterConfig.style.display = "none";
 });
+
+function areYouSure() {
+  return "hello";
+}
