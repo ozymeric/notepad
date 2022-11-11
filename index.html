@@ -11,16 +11,14 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico" />
   </head>
-  <body>
+  <body onbeforeunload="return areYouSure()">
     <div id="log-in">
       <form id="passwordForm" action="#">
         <label for="password">Enter Password</label>
         <input id="password" type="password" placeholder="password" />
-        <button id="passwordButton" type="submit">
-          Submit
-        </button>
+        <button id="passwordButton" type="submit">Submit</button>
       </form>
     </div>
     <div id="outer">
@@ -32,7 +30,7 @@
       </div>
       <div id="form-div">
         <form class="form-element" action="index.html">
-          <input id="text-area" type="text"/>
+          <input id="text-area" type="text" />
           <br />
           <button id="add-button" type="submit">Add</button>
           <button id="reset-button" type="reset">Clear</button>
@@ -82,7 +80,9 @@
     <div id="outer-config">
       <div id="reminder-config">
         <form action="#">
-          <label id="reminderMessage" for="configMessage">Reminder Message</label>
+          <label id="reminderMessage" for="configMessage"
+            >Reminder Message</label
+          >
           <input id="configMessage" type="text" />
           <label id="selectTime" for="time">Set Timer</label>
           <input type="time" name="" id="time" />

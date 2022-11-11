@@ -1,9 +1,9 @@
 body {
-  background-color: rgba(0, 0, 0, 0.83);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.83), rgba(8, 8, 8, 0.5));
+  background-image: linear-gradient(rgba(8, 8, 8, 0.4), rgba(90, 90, 90, 0.1));
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   font-family: sans-serif;
-  min-height: 93vh;
+  min-height: 96.5vh;
 }
 
 #log-in {
@@ -27,6 +27,7 @@ body {
   margin-top: 0.5rem;
   width: 12rem;
   height: 2rem;
+  border-radius: 0.5rem;
 }
 
 #passwordButton {
@@ -42,7 +43,7 @@ body {
   border-radius: 1rem;
   min-height: 25rem;
   display: none;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 #clock-div {
@@ -77,8 +78,14 @@ h5 {
   margin: 1rem auto 0 auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 button:hover {
   box-shadow: 2px 3px rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+
 }
 
 #form-div {
@@ -156,12 +163,14 @@ h4 {
 
 #reminders-inner-div button {
   height: 2rem;
+
 }
 
 #reminder-delete-buttons {
   display: flex;
   justify-content: end;
 }
+
 #reminder-delete-buttons button {
   border-radius: 4px;
   font-size: 0.7rem;
@@ -186,6 +195,7 @@ h4 {
   display: none;
   z-index: 5;
 }
+
 #reminder-config form {
   display: flex;
   flex-direction: column;
@@ -300,3 +310,137 @@ i:hover {
   margin-top: -10rem;
 }
 
+@media (max-width: 580px) {
+  #outer {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  #outer {
+    width: 22rem;
+  }
+}
+
+@media (max-width: 442px) {
+  #outer {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 406px) {
+  #outer {
+    width: 18rem;
+  }
+}
+
+@media (max-width: 377px) {
+  #outer {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 650px) {
+  #reminder-config {
+    position: fixed;
+    top: 7rem;
+    left: calc(50% - 170px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid white;
+    border-radius: 2rem;
+    width: 18rem;
+    z-index: 5;
+    margin: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  #reminder-config {
+    position: fixed;
+    top: 7rem;
+    left: calc(50% - 169px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid white;
+    border-radius: 2rem;
+    width: 17rem;
+    display: none;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 345px) {
+  #reminder-config {
+    position: fixed;
+    top: 7rem;
+    left: calc(50% - 169px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: none;
+    border-radius: 2rem;
+    width: 17rem;
+    display: none;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 650px) {
+  #alert-reminder-config {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 550px) {
+  #alert-reminder-config {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 442px) {
+  #alert-reminder-config {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 340px) {
+  #alert-reminder-config {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 580px) {
+  footer {
+    left: calc(273px - 85px);
+  }
+}
+
+@media (max-width: 500px) {
+  footer {
+    left: calc(273px - 110px);
+  }
+}
+
+@media (max-width: 442px) {
+  footer {
+    left: calc(273px - 125px);
+  }
+}
+
+@media (max-width: 406px) {
+  footer {
+    left: calc(273px - 140px);
+  }
+}
+
+@media (max-width: 377px) {
+  footer {
+    left: calc(273px - 155px);
+  }
+}
