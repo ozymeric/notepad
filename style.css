@@ -85,7 +85,10 @@ button {
 button:hover {
   box-shadow: 2px 3px rgba(255, 255, 255, 0.4);
   border-radius: 4px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc6e6fc170b4c23149db26149ed40f7f76ced644
 }
 
 #form-div {
@@ -443,4 +446,8 @@ i:hover {
   footer {
     left: calc(273px - 155px);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cc6e6fc170b4c23149db26149ed40f7f76ced644
