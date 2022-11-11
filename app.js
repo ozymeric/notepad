@@ -60,7 +60,7 @@ function fetchText(event) {
   textArea.value = "";
 }
 
-let myVar = setTimeout(lockScreen, 600000);
+let myVar = setTimeout(lockScreen, 3600000);
 
 // _____________ FUNCTIONS:
 
@@ -198,7 +198,7 @@ function lockScreen() {
 
 function lockScreenTimeout() {
   clearTimeout(myVar);
-  myVar = setTimeout(lockScreen, 300000);
+  myVar = setTimeout(lockScreen, 3600000);
 }
 
 function save() {
