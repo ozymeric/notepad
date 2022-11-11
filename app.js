@@ -459,8 +459,4 @@ alertReminderConfig.addEventListener("click", function () {
 
 function areYouSure() {
   return "hello";
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> cc6e6fc170b4c23149db26149ed40f7f76ced644
