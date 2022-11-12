@@ -162,7 +162,6 @@ h4 {
 
 #reminders-inner-div button {
   height: 2rem;
-
 }
 
 #reminder-delete-buttons {
@@ -304,6 +303,7 @@ i:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: larger;
   font-weight: bolder;
   margin-top: -10rem;
@@ -393,24 +393,32 @@ i:hover {
 @media (max-width: 650px) {
   #alert-reminder-config {
     width: 30rem;
+    text-align: center;
+    padding: 0.7rem;
   }
 }
 
 @media (max-width: 550px) {
   #alert-reminder-config {
     width: 25rem;
+    text-align: center;
+    padding: 0.7rem;
   }
 }
 
 @media (max-width: 442px) {
   #alert-reminder-config {
     width: 20rem;
+    text-align: center;
+    padding: 0.7rem;
   }
 }
 
 @media (max-width: 340px) {
   #alert-reminder-config {
     width: 15rem;
+    text-align: center;
+    padding: 0.7rem;
   }
 }
 
