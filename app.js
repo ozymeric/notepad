@@ -1,69 +1,101 @@
-// _____________ VARIABLES:
-
-const clockPar = document.getElementById("clock-p");
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// __________________________""" VARIABLES:
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
 
 const bodyElement = document.querySelector("body");
 const formElement = document.querySelector(".form-element");
+
+// TOP INPUT AREA:
 const textArea = document.querySelector("#text-area");
 const addButton = document.getElementById("add-button");
+const lockButton = document.querySelector("#lockButton");
+
+// CLOCK:
+const clockPar = document.getElementById("clock-p");
+
+// PASSWORD:
+const passwordInput = document.querySelector("#password");
+const passwordButton = document.querySelector("#passwordButton");
+
+// TO-DO LIST UL:
 const ulElement = document.querySelector("#ul");
-const ulElement2 = document.querySelector("#ul2");
 const saveButton = document.querySelector("#saveButtonDiv button");
 const deleteButton = document.querySelector("#delete");
 const clearAllButton = document.querySelector("#clear-all");
-const lockButton = document.querySelector("#lockButton");
-const passwordInput = document.querySelector("#password");
-const passwordButton = document.querySelector("#passwordButton");
+
+// REMINDERS UL2:
+const ulElement2 = document.querySelector("#ul2");
 const addReminderButton = document.getElementById("reminder-button");
-const configAddReminderButton = document.getElementById("configAddButton");
-const configResetButton = document.getElementById("configResetButton");
-const configMessage = document.getElementById("configMessage");
-const timer = document.getElementById("time");
 const reminderSaveButton = document.getElementById("reminderSaveButton");
 const reminderDeleteLastButton = document.getElementById(
   "reminderDeleteLastButton"
 );
 const reminderClearButton = document.getElementById("reminderClearButton");
+
+// REMINDER CONFIG AREA:
 const outerConfig = document.getElementById("outer-config");
+const configMessage = document.getElementById("configMessage");
+const timer = document.getElementById("time");
+const configAddReminderButton = document.getElementById("configAddButton");
+const configResetButton = document.getElementById("configResetButton");
+
+//REMINDER ALERT POP-UP AREA:
 const alertOuterConfig = document.getElementById("alert-outer-config");
 const alertReminderConfig = document.getElementById("alert-reminder-config");
 const reminderPopUpMessage = document.getElementById("reminder-message-pop-up");
 
+// REMINDER ARRAYS:
 reminderTimeArray = [];
 reminderMessageArray = [];
 
+// AUDIO FILE:
 var reminderAudio = new Audio("sound/reminder.wav");
 
-function fetchReminderData(e) {
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// __________________________""" FUNCTIONS:
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
+
+// PASSWORD DETECTION ON THE OPENNING PAGE:
+function releaseNotebook(e) {
   e.preventDefault();
-  messageData = configMessage.value;
-  reminderMessageArray.push(messageData);
-  timerData = timer.value;
-  reminderTimeArray.push(timerData);
-  content = messageData + " _ (Reminder @" + timerData + ")";
-  console.log(messageData + " _ (Reminder @" + timerData + ")");
-  let newList = document.createElement("LI");
-  newList.textContent = content;
-  ulElement2.append(newList);
-  newList.addEventListener("dblclick", lineThrough);
-  configResetButton.click();
-  closeConfigWindow();
+  if (passwordInput.value === "ozymeric") {
+    document.getElementById("outer").style.display = "block";
+    document.getElementById("log-in").style.display = "none";
+    passwordInput.value = "";
+  } else {
+    alert("Invalid Password!");
+    passwordInput.value = "";
+  }
+  textArea.focus();
 }
 
-function fetchText(event) {
-  event.preventDefault();
-  content = textArea.value;
-  let newList = document.createElement("LI");
-  newList.textContent = content;
-  ulElement.append(newList);
-  newList.addEventListener("dblclick", lineThrough);
-  textArea.value = "";
+// LOCK SCREEN FUNCTION:
+function lockScreen() {
+  document.getElementById("outer").style.display = "none";
+  document.getElementById("log-in").style.display = "flex";
+}
+
+// SETTING TIME-OUT FOR LOCKING THE SCREEN:
+function lockScreenTimeout() {
+  clearTimeout(myVar);
+  myVar = setTimeout(lockScreen, 3600000);
 }
 
 let myVar = setTimeout(lockScreen, 3600000);
 
-// _____________ FUNCTIONS:
-
+// TIME MODULE ON TOP-RIGHT CORNER:
 function displayTime() {
   let d = new Date();
   let hour = d.getHours();
@@ -176,31 +208,56 @@ function displayTime() {
     second;
 }
 
+// REFRESHING THE TIME MODULE EVERY 1 SECOND TO REFRESH THE "SECOND" DISPLAY
 setInterval(displayTime, 1000);
 
-function releaseNotebook(e) {
+// TO-DO LIST INPUT TEXT FETCH:
+function fetchText(event) {
+  event.preventDefault();
+  content = textArea.value;
+  let newList = document.createElement("LI");
+  newList.textContent = content;
+  ulElement.append(newList);
+  newList.addEventListener("dblclick", lineThrough);
+  textArea.value = "";
+}
+
+// REMINDER MESSAGE AND TIMER DATA FETCH:
+function fetchReminderData(e) {
   e.preventDefault();
-  if (passwordInput.value === "ozymeric") {
-    document.getElementById("outer").style.display = "block";
-    document.getElementById("log-in").style.display = "none";
-    passwordInput.value = "";
-  } else {
-    alert("Invalid Password!");
-    passwordInput.value = "";
-  }
-  textArea.focus();
+  messageData = configMessage.value;
+  reminderMessageArray.push(messageData);
+  timerData = timer.value;
+  reminderTimeArray.push(timerData);
+  content = messageData + " _ (Reminder @" + timerData + ")";
+  console.log(messageData + " _ (Reminder @" + timerData + ")");
+  let newList = document.createElement("LI");
+  newList.draggable = true;
+  dragStartDetect(newList);
+  newList.textContent = content;
+  ulElement2.append(newList);
+  newList.addEventListener("dblclick", lineThrough);
+  configResetButton.click();
+  closeConfigWindow();
 }
 
-function lockScreen() {
-  document.getElementById("outer").style.display = "none";
-  document.getElementById("log-in").style.display = "flex";
+// DRAG EVENT FUNCTIONS FOR REMINDER UL2 LIST:
+function dragStartDetect(element) {
+  element.addEventListener("dragstart", () => {
+    element.classList.add("dragging");
+  });
+  element.addEventListener("dragend", () => {
+    element.classList.remove("dragging");
+  });
 }
 
-function lockScreenTimeout() {
-  clearTimeout(myVar);
-  myVar = setTimeout(lockScreen, 3600000);
-}
+ulElement2.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const itemBeingDragged = document.querySelector(".dragging");
+  ulElement2.appendChild(itemBeingDragged);
+});
 
+// SAVING THE TO-DO LIST DATA AS TXT DOCUMENT :
 function save() {
   const contentArray = [];
   allListElements = document.querySelectorAll("#ul LI");
@@ -263,6 +320,22 @@ function save() {
   anchor.download = date + "" + month + "-" + hour + "." + minute + ".txt";
   anchor.click();
 }
+
+// DELETE LAST TO-DO ELEMENT:
+function deleteLast() {
+  allListElements = document.querySelectorAll("#ul LI");
+  allListElements[allListElements.length - 1].remove();
+}
+
+// CLEAR ALL TO-DO ELEMENTS:
+function clearAll() {
+  allListElements = document.querySelectorAll("#ul LI");
+  for (i of allListElements) {
+    i.remove();
+  }
+}
+
+// SAVING THE REMINDER DATA AS TXT DOCUMENT :
 
 function reminderSave() {
   const contentArray = [];
@@ -328,11 +401,7 @@ function reminderSave() {
   anchor.click();
 }
 
-function deleteLast() {
-  allListElements = document.querySelectorAll("#ul LI");
-  allListElements[allListElements.length - 1].remove();
-}
-
+// DELETE LAST REMINDER ELEMENT:
 function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
@@ -340,13 +409,7 @@ function reminderDeleteLast() {
   reminderMessageArray.pop();
 }
 
-function clearAll() {
-  allListElements = document.querySelectorAll("#ul LI");
-  for (i of allListElements) {
-    i.remove();
-  }
-}
-
+// CLEAR ALL REMINDER ELEMENTS:
 function reminderClearAll() {
   allListElements = document.querySelectorAll("#ul2 LI");
   for (i of allListElements) {
@@ -356,23 +419,7 @@ function reminderClearAll() {
   reminderMessageArray = [];
 }
 
-function lineThrough() {
-  if (this.style.textDecoration === "line-through") {
-    this.remove();
-  }
-  this.style.textDecoration = "line-through";
-  this.style.color = "grey";
-  let deletedElement = this.textContent.slice(-6, -1);
-  let indexCount = -1;
-  for (const element of reminderTimeArray) {
-    indexCount++;
-    if (element === deletedElement) {
-      delete reminderTimeArray[indexCount];
-      delete reminderMessageArray[indexCount];
-    }
-  }
-}
-
+// REVEALING THE REMINDER CONFIG WINDOW:
 function addReminder() {
   document.getElementById("outer").style.display = "none";
   document.getElementById("outer-config").style.display = "block";
@@ -380,6 +427,14 @@ function addReminder() {
   document.getElementById("configMessage").focus();
 }
 
+// REMINDER CONFIG FORM ELEMENT STOP PROPAGATION FUNCTION:
+document
+  .getElementById("reminder-config")
+  .addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+
+// CLOSING THE REMINDER CONFIG WINDOW:
 function closeConfigWindow() {
   document.getElementById("outer").style.display = "block";
   document.getElementById("outer-config").style.display = "none";
@@ -387,6 +442,7 @@ function closeConfigWindow() {
   textArea.focus();
 }
 
+// CHECKING THE REMINDER TIME AND THE CURRENT TIME FOR THE ALERT:
 function reminderTimeCheck() {
   let currentTime = new Date();
   let currentHour = currentTime.getHours();
@@ -430,33 +486,71 @@ function reminderTimeCheck() {
   inndex = -1;
 }
 
+// CHEKING THE ALERT TIME AND CURRENT TIME EVERY 1 SECOND:
 setInterval(reminderTimeCheck, 1000);
 
-// _____________ EVENT LISTENERS:
+// DOUBLE CLICK TO LINE-THROUGH AN ELEMENT AND SECOND DOUBLE CLICK TO DELETE THE ELEMENT:
+function lineThrough() {
+  if (this.style.textDecoration === "line-through") {
+    this.remove();
+  }
+  this.style.textDecoration = "line-through";
+  this.style.color = "grey";
+  let deletedElement = this.textContent.slice(-6, -1);
+  let indexCount = -1;
+  for (const element of reminderTimeArray) {
+    indexCount++;
+    if (element === deletedElement) {
+      delete reminderTimeArray[indexCount];
+      delete reminderMessageArray[indexCount];
+    }
+  }
+}
 
-addButton.addEventListener("click", fetchText);
-saveButton.addEventListener("click", save);
-deleteButton.addEventListener("click", deleteLast);
-clearAllButton.addEventListener("click", clearAll);
-passwordButton.addEventListener("click", releaseNotebook);
-bodyElement.addEventListener("mousemove", lockScreenTimeout);
-bodyElement.addEventListener("mousestop", lockScreenTimeout);
-lockButton.addEventListener("click", lockScreen);
-addReminderButton.addEventListener("click", addReminder);
-configAddReminderButton.addEventListener("click", fetchReminderData);
-reminderDeleteLastButton.addEventListener("click", reminderDeleteLast);
-reminderClearButton.addEventListener("click", reminderClearAll);
-reminderSaveButton.addEventListener("click", reminderSave);
-outerConfig.addEventListener("click", closeConfigWindow);
-document
-  .getElementById("reminder-config")
-  .addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-alertReminderConfig.addEventListener("click", function () {
-  alertOuterConfig.style.display = "none";
-});
-
+// A DUMMY FUNCTION TO ASK PERMISSION EVERY TIME WHEN LEAVING/CLOSING THE PAGE.
 function areYouSure() {
   return "hello";
 }
+
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// __________________________""" EVENT LISTENERS:
+// ########################################################################
+// ########################################################################
+// ########################################################################
+// ########################################################################
+
+// BODY EVENT-LISTENERS:
+bodyElement.addEventListener("mousemove", lockScreenTimeout);
+bodyElement.addEventListener("mousestop", lockScreenTimeout);
+
+// PASSWORD AREA:
+passwordButton.addEventListener("click", releaseNotebook);
+
+// TOP INPUT AREA:
+addButton.addEventListener("click", fetchText);
+lockButton.addEventListener("click", lockScreen);
+
+// TO-DO LIST AREA:
+saveButton.addEventListener("click", save);
+deleteButton.addEventListener("click", deleteLast);
+clearAllButton.addEventListener("click", clearAll);
+
+// REMINDER AREA:
+addReminderButton.addEventListener("click", addReminder);
+reminderSaveButton.addEventListener("click", reminderSave);
+reminderDeleteLastButton.addEventListener("click", reminderDeleteLast);
+reminderClearButton.addEventListener("click", reminderClearAll);
+
+// REMINDER CONFIG AREA:
+configAddReminderButton.addEventListener("click", fetchReminderData);
+
+// CLICK OUTER CONFIG AREA TO CLOS REMINDER AREA:
+outerConfig.addEventListener("click", closeConfigWindow);
+
+// CLICK ON THE REMINDER ALERT POP UP TO CLOSE IT:
+alertReminderConfig.addEventListener("click", function () {
+  alertOuterConfig.style.display = "none";
+});
