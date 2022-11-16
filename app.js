@@ -54,6 +54,7 @@ const reminderPopUpMessage = document.getElementById("reminder-message-pop-up");
 // REMINDER ARRAYS:
 reminderTimeArray = [];
 reminderMessageArray = [];
+reminderFullArray = [];
 
 // AUDIO FILE:
 var reminderAudio = new Audio("sound/reminder.wav");
@@ -230,17 +231,19 @@ function fetchText(event) {
 function fetchReminderData(e) {
   e.preventDefault();
   messageData = configMessage.value;
-  if (messageData === "") {
-    alert("PLEASE TYPE A REMINDER MESSAGE !!!");
-    return;
+  timerData = timer.value;
+  if (messageData === "" || timerData == "") {
+    if (messageData === "") {
+      alert("PLEASE TYPE A REMINDER MESSAGE !!!");
+      return;
+    } else if (timerData == "") {
+      alert("PLEASE SET THE TIMER !!!");
+      return;
+    }
   }
   reminderMessageArray.push(messageData);
-  timerData = timer.value;
-  if (timerData === "") {
-    alert("PLEASE SET THE TIMER !!!");
-    return;
-  }
   reminderTimeArray.push(timerData);
+  reminderFullArray.push(messageData + timerData);
   content = messageData + " _ (Reminder @" + timerData + ")";
   console.log(messageData + " _ (Reminder @" + timerData + ")");
   let newList = document.createElement("LI");
@@ -497,6 +500,7 @@ function reminderTimeCheck() {
       delete reminderTimeArray[inndex];
       reminderPopUpMessage.textContent =
         "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
+      delete reminderMessageArray[inndex];
 
       for (const i of document.querySelectorAll("#ul2 LI")) {
         if (i.textContent.slice(-6, -1) === time) {
