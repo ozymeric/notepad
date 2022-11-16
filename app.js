@@ -21,6 +21,7 @@ const clockPar = document.getElementById("clock-p");
 
 // PASSWORD:
 const passwordInput = document.querySelector("#password");
+passwordInput.focus();
 const passwordButton = document.querySelector("#passwordButton");
 
 // TO-DO LIST UL:
