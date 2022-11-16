@@ -218,17 +218,28 @@ function fetchText(event) {
   content = textArea.value;
   let newList = document.createElement("LI");
   newList.textContent = content;
+  newList.draggable = true;
+  dragStartDetect(newList);
   ulElement.append(newList);
   newList.addEventListener("dblclick", lineThrough);
   textArea.value = "";
+  dragWithinUl1();
 }
 
 // REMINDER MESSAGE AND TIMER DATA FETCH:
 function fetchReminderData(e) {
   e.preventDefault();
   messageData = configMessage.value;
+  if (messageData === "") {
+    alert("PLEASE TYPE A REMINDER MESSAGE !!!");
+    return;
+  }
   reminderMessageArray.push(messageData);
   timerData = timer.value;
+  if (timerData === "") {
+    alert("PLEASE SET THE TIMER !!!");
+    return;
+  }
   reminderTimeArray.push(timerData);
   content = messageData + " _ (Reminder @" + timerData + ")";
   console.log(messageData + " _ (Reminder @" + timerData + ")");
@@ -240,9 +251,12 @@ function fetchReminderData(e) {
   newList.addEventListener("dblclick", lineThrough);
   configResetButton.click();
   closeConfigWindow();
+  dragWithinUl2();
 }
 
-// DRAG EVENT FUNCTIONS FOR REMINDER UL2 LIST:
+// DRAG EVENT FUNCTIONS:
+
+// DETECTING DRAG START:
 function dragStartDetect(element) {
   element.addEventListener("dragstart", () => {
     element.classList.add("dragging");
@@ -252,11 +266,23 @@ function dragStartDetect(element) {
   });
 }
 
-ulElement2.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  const itemBeingDragged = document.querySelector(".dragging");
-  ulElement2.appendChild(itemBeingDragged);
-});
+// DRAG TO THE END OF THE LIST EVENT WITHIN TO-DO LIST UL:
+function dragWithinUl1() {
+  ulElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const itemBeingDragged = document.querySelector("#ul .dragging");
+    ulElement.appendChild(itemBeingDragged);
+  });
+}
+
+// DRAG TO THE END OF THE LIST EVENT WITHIN REMINDER LIST UL2:
+function dragWithinUl2() {
+  ulElement2.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const itemBeingDragged = document.querySelector("#ul2 .dragging");
+    ulElement2.appendChild(itemBeingDragged);
+  });
+}
 
 // SAVING THE TO-DO LIST DATA AS TXT DOCUMENT :
 function save() {
