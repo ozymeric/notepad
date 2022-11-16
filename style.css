@@ -1,3 +1,9 @@
+/* ######################################################################## */
+/* ######################################################################## */
+/* ############################ GENERAL TARGETS ########################### */
+/* ######################################################################## */
+/* ######################################################################## */
+
 body {
   background-image: linear-gradient(rgba(8, 8, 8, 0.4), rgba(90, 90, 90, 0.1));
   background-color: rgba(0, 0, 0, 0.9);
@@ -6,6 +12,36 @@ body {
   min-height: 96.5vh;
 }
 
+/* ALL BUTTONS */
+button {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  box-shadow: 2px 3px rgba(255, 255, 255, 0.4);
+}
+
+/* ALL HR TAGS */
+#hr {
+  margin-bottom: 1.5rem;
+}
+
+/* ######################################################################## */
+/* ################# OUR BODY ELEMENT CONSISTS OF 4 DIVS ################## */
+/* ######################################################################## */
+/* ######################################################################## */
+/* ######################################################################## */
+
+/* ######################################################################## */
+/* ######################################################################## */
+/* ####################### FIRST DIV - PASSWORD AREA ###################### */
+/* ######################################################################## */
+/* ######################################################################## */
+/* PASSWORD OUTER DIV. INCLUDES ONLY PASSWORD AREA!!! */
+/* ######################################################################## */
+
+/* PASSWORD LOGIN */
 #log-in {
   display: flex;
   flex-direction: column;
@@ -15,6 +51,7 @@ body {
   /* display: none; */
 }
 
+/* PASSWORD FORM */
 #passwordForm {
   display: flex;
   flex-direction: column;
@@ -23,6 +60,7 @@ body {
   margin-top: 3rem;
 }
 
+/* PASSWORD INPUT */
 #password {
   margin-top: 0.5rem;
   width: 12rem;
@@ -30,10 +68,21 @@ body {
   border-radius: 0.5rem;
 }
 
+/* PASSWORD BUTTON */
 #passwordButton {
   margin: 0.6rem;
 }
 
+/* ######################################################################## */
+/* ######################################################################## */
+/* #################### SECOND DIV - MAIN AREA ############################ */
+/* ######################################################################## */
+/* ######################################################################## */
+/* INCLUDES TO-DO AREA AND REMINDER AREA AND FOOTER AREA  */
+/* ######################################################################## */
+
+/* OUTER DIV FOR THE MAIN AREA  */
+/* ######################################################################## */
 #outer {
   position: relative;
   width: 30rem;
@@ -42,10 +91,11 @@ body {
   border: 1px solid white;
   border-radius: 1rem;
   min-height: 25rem;
-  /* display: none; */
+  display: none;
   margin-top: 1rem;
 }
 
+/* CLOCK RELATED AREA */
 #clock-div {
   display: flex;
   justify-content: end;
@@ -56,6 +106,10 @@ body {
   padding: 0;
 }
 
+/* NOTEBOOK TITLE AND RELATED AREA  */
+/* ######################################################################## */
+
+/* NOTEBOOK TITLE */
 h3 {
   border-bottom: 1px solid white;
   border-bottom-right-radius: 0.7rem;
@@ -65,6 +119,31 @@ h3 {
   width: 7rem;
 }
 
+/* TO-DO FORM */
+#form-div {
+  text-align: center;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+/* TO-DO'S INPUT */
+#text-area {
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 1rem auto;
+  width: 90%;
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+/* TO-DO LIST AND RELATED AREA  */
+/* ######################################################################## */
+
+/* TO-DO LIST OUTER DIV*/
+#output {
+  width: 100%;
+}
+
+/* TO-DO LIST TITLE*/
 h5 {
   display: inline-block;
   font-weight: 100;
@@ -78,62 +157,42 @@ h5 {
   margin: 1rem auto 0 auto;
 }
 
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  box-shadow: 2px 3px rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-}
-
-#form-div {
-  text-align: center;
-  margin: auto;
-  padding: 0.5rem;
-}
-
+/* TO-DO LIST AREA UL */
 ul {
   margin-bottom: 1.5rem;
   overflow: hidden;
 }
 
-#text-area {
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 1rem auto;
-  width: 90%;
-  height: 3rem;
-  border-radius: 0.5rem;
-}
+/* TO-DO LIST AREA BUTTONS */
+/* ######################################################################## */
 
-#output {
-  width: 100%;
-}
-
+/* ALL BUTTONS IN DO-DO OUTER DIV*/
 #output button {
   border-radius: 4px;
   font-size: 0.7rem;
 }
 
+/* FIRST BUTTON OUTER DIV -- INCLUDES SAVE.TXT BUTTON */
 #buttonsDiv {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-
+ /* FIRST BUTTON INNER DIV -- TARGETS SAVE.TXT BUTON */
 #saveButtonDiv {
   display: flex;
 }
 
+/* SECOND BUTTONS DIV --  DELETE LAST & CLEAR ALL BUTTONS */
 #twoButtonsDiv {
   display: flex;
   justify-content: end;
 }
 
-a {
-  text-decoration: none;
-}
+/* REMINDERS LIST AND RELATED AREA */
+/* ######################################################################## */
 
+/* FIRST PART OF REMINDERS DIV AREA (REMINDERS-INNER-DIV) */
 #reminders-inner-div {
   display: flex;
   align-items: center;
@@ -141,106 +200,54 @@ a {
   margin-top: 1.2rem;
 }
 
-h4 {
-  display: inline-block;
-}
-
+/* REMINDERS TITLE H5 TAG */
 #remindersTitle {
   margin: 0;
   justify-content: center;
 }
 
+/* ADD REMINDER BUTTON */
+#reminders-inner-div button {
+  height: 2rem;
+}
+
+/* SECOND PART OF REMINDERS DIV AREA (REMINDERS-INNER-DIV-2) */
+
+/* REMINDERS BUTTONS PART */
+/* ######################################################################## */
+
+/* ALL BUTTONS IN REMINDER AREA */
+#reminders button {
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* REMINDERS SAVE AS TXT - DELETE LAST - DELETE ALL BUTTONS */
 #reminderButtonsDiv {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
 }
 
+/* REMINDER SAVE AS TXT BUTTON DIV */
 #reminderSaveButtonDiv {
   display: flex;
 }
 
-#reminders-inner-div button {
-  height: 2rem;
-}
-
+/* REMINDERS DELETE LAST AND CLEAR ALL BUTTONS DIV*/
 #reminder-delete-buttons {
   display: flex;
   justify-content: end;
 }
 
+/* REMINDERS DELETE LAST AND CLEAR ALL BUTTONS TARGETTED HERE*/
 #reminder-delete-buttons button {
   border-radius: 4px;
   font-size: 0.7rem;
 }
 
-#reminders button {
-  border-radius: 4px;
-  font-size: 0.7rem;
-}
-
-#reminder-config {
-  position: fixed;
-  top: 7rem;
-  left: calc(50% - 273px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  border: 1px solid white;
-  border-radius: 2rem;
-  width: 30rem;
-  display: none;
-  z-index: 5;
-}
-
-#reminder-config form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-#message {
-  height: 2rem;
-  width: 90%;
-}
-
-#reminderMessage {
-  margin-bottom: 0.7rem;
-}
-
-#selectTime {
-  margin: 1rem auto 0.7rem auto;
-}
-
-#configAddButton {
-  margin: 1.5rem auto 0 auto;
-  height: 3rem;
-  width: 9rem;
-  border-radius: 1.5rem;
-}
-
-#configResetButton {
-  margin: 0.7rem auto 0 auto;
-  height: 2rem;
-  width: 5rem;
-  border-radius: 1.5rem;
-}
-
-#configMessage {
-  width: 90%;
-  height: 2.5rem;
-  border-radius: 0.7rem;
-}
-
-#time {
-  width: 6rem;
-}
-
-#hr {
-  margin-bottom: 1.5rem;
-}
+/* FOOTER AREA */
+/* ######################################################################## */
 
 footer {
   position: absolute;
@@ -256,18 +263,19 @@ footer p {
   font-weight: 100;
 }
 
-i {
-  color: white;
-  padding: 3px;
-  border-radius: 1rem;
-  transition: ease-in 0.6s;
+a {
+  text-decoration: none;
 }
 
-i:hover {
-  color: black;
-  background-color: white;
-}
+/* ######################################################################## */
+/* ######################################################################## */
+/* ############### THIRD DIV - REMINDER CONFIG AREA ####################### */
+/* ######################################################################## */
+/* ######################################################################## */
+/* INCLUDES REMINDER CONFIGURATION AREA */
+/* ######################################################################## */
 
+/* OUTER DIV FOR REMINDER CONFIG INCLUDES EVERYTING ABOUT REMINDER CONFIG*/
 #outer-config {
   position: fixed;
   top: 0;
@@ -279,6 +287,77 @@ i:hover {
   display: none;
 }
 
+/* INNER-OUTER DIV FOR REMINDER CONFIG, ALSO INCLUDES EVERYTING ABOUT REMINDER CONFIG*/
+#reminder-config {
+  position: fixed;
+  top: 7rem;
+  left: calc(50% - 273px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid white;
+  border-radius: 2rem;
+  width: 30rem;
+  display: none;
+  z-index: 5;
+}
+
+/* TARGETS THE REMINDER CONFIG FORM */
+#reminder-config form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* "REMINDER MESSAGE" TITLE. THE LABEL TAG!! */
+#reminderMessage {
+  margin-bottom: 0.7rem;
+}
+
+/* REMINDER CONFIG MESSAGE INPUT */
+#configMessage {
+  width: 90%;
+  height: 2.5rem;
+  border-radius: 0.7rem;
+}
+
+/* "SET TIMER" TITLE. THE LABEL TAG!! */
+#selectTime {
+  margin: 1rem auto 0.7rem auto;
+}
+
+/* TIME INPUT */
+#time {
+  width: 6rem;
+}
+
+/* ADD REMINDER BUTTON WITHIN THE CONFIGURATION AREA */
+#configAddButton {
+  margin: 1.5rem auto 0 auto;
+  height: 3rem;
+  width: 9rem;
+  border-radius: 1.5rem;
+}
+
+/* RESET BUTTON WITHIN THE CONFIGURATION AREA */
+#configResetButton {
+  margin: 0.7rem auto 0 auto;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 1.5rem;
+}
+
+/* ######################################################################## */
+/* ######################################################################## */
+/* ############### FOURTH DIV - ALERT POP-UP AREA## ####################### */
+/* ######################################################################## */
+/* ######################################################################## */
+/* INCLUDES EVERY ELEMENT ABOUT ALERT POP-UP */
+/* ######################################################################## */
+
+/* OUTER DIV OF THE ALERT AREA */
 #alert-outer-config {
   position: fixed;
   top: 0;
@@ -294,6 +373,7 @@ i:hover {
   display: none;
 }
 
+/* INNER-OUTER DIV OF THE ALERT AREA */
 #alert-reminder-config {
   background-color: grey;
   width: 35rem;
@@ -309,36 +389,93 @@ i:hover {
   margin-top: -10rem;
 }
 
+/* ALERT SYMBOL */
+i {
+  color: white;
+  padding: 3px;
+  border-radius: 1rem;
+  transition: ease-in 0.6s;
+}
+
+i:hover {
+  color: black;
+  background-color: white;
+}
+
+/* ######################################################################## */
+/* ######################################################################## */
+/* ############################ MEDIA QUERRIES ############################ */
+/* ######################################################################## */
+/* ######################################################################## */
+
+/* ######################################################################## */
+/* ###################### FOR SECOND DIV & FOOTER ######################### */
+/* ######################################################################## */
+
+/* ############################ - 580 PX - ############################ */
+
 @media (max-width: 580px) {
   #outer {
     width: 25rem;
   }
+
+  footer {
+    left: calc(273px - 85px);
+  }
 }
+/* ############################ - 500 PX - ############################ */
 
 @media (max-width: 500px) {
   #outer {
     width: 22rem;
   }
+
+  footer {
+    left: calc(273px - 110px);
+  }
 }
+/* ############################ - 442 PX - ############################ */
 
 @media (max-width: 442px) {
   #outer {
     width: 20rem;
   }
+
+  footer {
+    left: calc(273px - 125px);
+  }
 }
+
+/* ############################ - 406 PX - ############################ */
 
 @media (max-width: 406px) {
   #outer {
     width: 18rem;
   }
+
+  footer {
+    left: calc(273px - 140px);
+  }
 }
+
+/* ############################ - 377 PX - ############################ */
 
 @media (max-width: 377px) {
   #outer {
     width: 16rem;
   }
+
+  footer {
+    left: calc(273px - 155px);
+  }
 }
 
+
+/* ######################################################################## */
+/* ###################### FOR REMINDER CONFIG WINDOW ###################### */
+/* ######################################################################## */
+
+/* ############################ - 650 PX - ############################ */
 @media (max-width: 650px) {
   #reminder-config {
     position: fixed;
@@ -356,6 +493,7 @@ i:hover {
   }
 }
 
+/* ############################ - 400 PX - ############################ */
 @media (max-width: 400px) {
   #reminder-config {
     position: fixed;
@@ -373,6 +511,7 @@ i:hover {
   }
 }
 
+/* ############################ - 345 PX - ############################ */
 @media (max-width: 345px) {
   #reminder-config {
     position: fixed;
@@ -390,6 +529,12 @@ i:hover {
   }
 }
 
+/* ######################################################################## */
+/* ################### FOR ALERT REMINDER POP-UP WINDOW ################### */
+/* ######################################################################## */
+
+
+/* ############################ - 650 PX - ############################ */
 @media (max-width: 650px) {
   #alert-reminder-config {
     width: 30rem;
@@ -398,6 +543,7 @@ i:hover {
   }
 }
 
+/* ############################ - 550 PX - ############################ */
 @media (max-width: 550px) {
   #alert-reminder-config {
     width: 25rem;
@@ -406,6 +552,7 @@ i:hover {
   }
 }
 
+/* ############################ - 442 PX - ############################ */
 @media (max-width: 442px) {
   #alert-reminder-config {
     width: 20rem;
@@ -414,40 +561,11 @@ i:hover {
   }
 }
 
+/* ############################ - 340 PX - ############################ */
 @media (max-width: 340px) {
   #alert-reminder-config {
     width: 15rem;
     text-align: center;
     padding: 0.7rem;
-  }
-}
-
-@media (max-width: 580px) {
-  footer {
-    left: calc(273px - 85px);
-  }
-}
-
-@media (max-width: 500px) {
-  footer {
-    left: calc(273px - 110px);
-  }
-}
-
-@media (max-width: 442px) {
-  footer {
-    left: calc(273px - 125px);
-  }
-}
-
-@media (max-width: 406px) {
-  footer {
-    left: calc(273px - 140px);
-  }
-}
-
-@media (max-width: 377px) {
-  footer {
-    left: calc(273px - 155px);
   }
 }
