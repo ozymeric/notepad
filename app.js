@@ -233,9 +233,9 @@ function save() {
   const contentArray = [];
   allListElements = document.querySelectorAll("#ul LI");
   for (i of allListElements) {
-    console.log(i.textContent);
-    contentArray.push(i.textContent);
-    console.log(contentArray);
+    if (i.style.textDecoration !== "line-through") {
+      contentArray.push(i.textContent);
+    }
   }
   const stringData = JSON.stringify(contentArray);
   console.log(stringData);
@@ -324,13 +324,15 @@ function fetchReminderData(e) {
   content = messageData + " _ (Reminder @" + timerData + ")";
   reminderFullArray.push(content);
   reminderMessageArray.push(messageData);
-  reminderTimeArray.push(reminderFullArray[reminderFullArray.length -1].slice(-6,-1));
+  reminderTimeArray.push(
+    reminderFullArray[reminderFullArray.length - 1].slice(-6, -1)
+  );
   console.log(messageData + " _ (Reminder @" + timerData + ")");
   let newList = document.createElement("LI");
   newList.draggable = true;
   dragStartDetect(newList);
   let inndex = reminderFullArray.length;
-  newList.textContent = reminderFullArray[inndex-1];
+  newList.textContent = reminderFullArray[inndex - 1];
   ulElement2.append(newList);
   newList.addEventListener("dblclick", lineThrough);
   configResetButton.click();
@@ -345,11 +347,11 @@ function reminderListRefresher() {
   reminderTimeArray = [];
   reminderFullArray = [];
   for (let item of reminderListItems) {
-      if (item.style.textDecoration !== "line-through") {
-        reminderMessageArray.push(item.textContent.slice(0, -20));
-        reminderTimeArray.push(item.textContent.slice(-6, -1));
-        reminderFullArray.push(item.textContent);
-      }
+    if (item.style.textDecoration !== "line-through") {
+      reminderMessageArray.push(item.textContent.slice(0, -20));
+      reminderTimeArray.push(item.textContent.slice(-6, -1));
+      reminderFullArray.push(item.textContent);
+    }
   }
 }
 
@@ -358,9 +360,9 @@ function reminderSave() {
   const contentArray = [];
   allListElements = document.querySelectorAll("#ul2 LI");
   for (i of allListElements) {
-    console.log(i.textContent);
-    contentArray.push(i.textContent);
-    console.log(contentArray);
+    if (i.style.textDecoration !== "line-through") {
+      contentArray.push(i.textContent);
+    }
   }
   const stringData = JSON.stringify(contentArray);
   console.log(stringData);
@@ -422,7 +424,10 @@ function reminderSave() {
 function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
-  if (allListElements[allListElements.length - 1].style.textDecoration !== "line-through") {
+  if (
+    allListElements[allListElements.length - 1].style.textDecoration !==
+    "line-through"
+  ) {
     reminderTimeArray.pop();
     reminderMessageArray.pop();
     reminderFullArray.pop();
