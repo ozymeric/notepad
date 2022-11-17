@@ -89,7 +89,7 @@ function lockScreen() {
   document.getElementById("log-in").style.display = "flex";
 }
 
-// SETTING TIME-OUT FOR LOCKING THE SCREEN:
+// SETTING TIME-OUT FOR LOCKING THE SCREEN (3600000 seconds = 1 hour):
 function lockScreenTimeout() {
   clearTimeout(myVar);
   myVar = setTimeout(lockScreen, 3600000);
@@ -213,6 +213,7 @@ function displayTime() {
 // REFRESHING THE TIME MODULE EVERY 1 SECOND TO REFRESH THE "SECOND" DISPLAY
 setInterval(displayTime, 1000);
 
+// ____________________________________ TO-DO LIST AREA ________
 // TO-DO LIST INPUT TEXT FETCH:
 function fetchText(event) {
   event.preventDefault();
@@ -225,66 +226,6 @@ function fetchText(event) {
   newList.addEventListener("dblclick", lineThrough);
   textArea.value = "";
   dragWithinUl1();
-}
-
-// REMINDER MESSAGE AND TIMER DATA FETCH:
-function fetchReminderData(e) {
-  e.preventDefault();
-  messageData = configMessage.value;
-  timerData = timer.value;
-  if (messageData === "" || timerData == "") {
-    if (messageData === "") {
-      alert("PLEASE TYPE A REMINDER MESSAGE !!!");
-      return;
-    } else if (timerData == "") {
-      alert("PLEASE SET THE TIMER !!!");
-      return;
-    }
-  }
-  reminderMessageArray.push(messageData);
-  reminderTimeArray.push(timerData);
-  reminderFullArray.push(messageData + timerData);
-  content = messageData + " _ (Reminder @" + timerData + ")";
-  console.log(messageData + " _ (Reminder @" + timerData + ")");
-  let newList = document.createElement("LI");
-  newList.draggable = true;
-  dragStartDetect(newList);
-  newList.textContent = content;
-  ulElement2.append(newList);
-  newList.addEventListener("dblclick", lineThrough);
-  configResetButton.click();
-  closeConfigWindow();
-  dragWithinUl2();
-}
-
-// DRAG EVENT FUNCTIONS:
-
-// DETECTING DRAG START:
-function dragStartDetect(element) {
-  element.addEventListener("dragstart", () => {
-    element.classList.add("dragging");
-  });
-  element.addEventListener("dragend", () => {
-    element.classList.remove("dragging");
-  });
-}
-
-// DRAG TO THE END OF THE LIST EVENT WITHIN TO-DO LIST UL:
-function dragWithinUl1() {
-  ulElement.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    const itemBeingDragged = document.querySelector("#ul .dragging");
-    ulElement.appendChild(itemBeingDragged);
-  });
-}
-
-// DRAG TO THE END OF THE LIST EVENT WITHIN REMINDER LIST UL2:
-function dragWithinUl2() {
-  ulElement2.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    const itemBeingDragged = document.querySelector("#ul2 .dragging");
-    ulElement2.appendChild(itemBeingDragged);
-  });
 }
 
 // SAVING THE TO-DO LIST DATA AS TXT DOCUMENT :
@@ -365,8 +306,54 @@ function clearAll() {
   }
 }
 
-// SAVING THE REMINDER DATA AS TXT DOCUMENT :
+// ____________________________________ REMINDER AREA ________
+// REMINDER MESSAGE AND TIMER DATA FETCH:
+function fetchReminderData(e) {
+  e.preventDefault();
+  messageData = configMessage.value;
+  timerData = timer.value;
+  if (messageData === "" || timerData == "") {
+    if (messageData === "") {
+      alert("PLEASE TYPE A REMINDER MESSAGE !!!");
+      return;
+    } else if (timerData == "") {
+      alert("PLEASE SET THE TIMER !!!");
+      return;
+    }
+  }
+  content = messageData + " _ (Reminder @" + timerData + ")";
+  reminderFullArray.push(content);
+  reminderMessageArray.push(messageData);
+  reminderTimeArray.push(reminderFullArray[reminderFullArray.length -1].slice(-6,-1));
+  console.log(messageData + " _ (Reminder @" + timerData + ")");
+  let newList = document.createElement("LI");
+  newList.draggable = true;
+  dragStartDetect(newList);
+  let inndex = reminderFullArray.length;
+  newList.textContent = reminderFullArray[inndex-1];
+  ulElement2.append(newList);
+  newList.addEventListener("dblclick", lineThrough);
+  configResetButton.click();
+  closeConfigWindow();
+  dragWithinUl2();
+}
 
+// REFRESHES THE 3 ARRAYS ACCORDING TO THE LATEST SITUATION OF THE UL2 LIST !!!
+function reminderListRefresher() {
+  let reminderListItems = document.querySelectorAll("#ul2 LI");
+  reminderMessageArray = [];
+  reminderTimeArray = [];
+  reminderFullArray = [];
+  for (let item of reminderListItems) {
+      if (item.style.textDecoration !== "line-through") {
+        reminderMessageArray.push(item.textContent.slice(0, -20));
+        reminderTimeArray.push(item.textContent.slice(-6, -1));
+        reminderFullArray.push(item.textContent);
+      }
+  }
+}
+
+// SAVING THE REMINDER DATA AS TXT DOCUMENT :
 function reminderSave() {
   const contentArray = [];
   allListElements = document.querySelectorAll("#ul2 LI");
@@ -435,8 +422,11 @@ function reminderSave() {
 function reminderDeleteLast() {
   allListElements = document.querySelectorAll("#ul2 LI");
   allListElements[allListElements.length - 1].remove();
-  reminderTimeArray.pop();
-  reminderMessageArray.pop();
+  if (allListElements[allListElements.length - 1].style.textDecoration !== "line-through") {
+    reminderTimeArray.pop();
+    reminderMessageArray.pop();
+    reminderFullArray.pop();
+  }
 }
 
 // CLEAR ALL REMINDER ELEMENTS:
@@ -447,6 +437,7 @@ function reminderClearAll() {
   }
   reminderTimeArray = [];
   reminderMessageArray = [];
+  reminderFullArray = [];
 }
 
 // REVEALING THE REMINDER CONFIG WINDOW:
@@ -501,6 +492,7 @@ function reminderTimeCheck() {
       reminderPopUpMessage.textContent =
         "'' " + reminderMessageArray[inndex].toUpperCase() + " ''";
       delete reminderMessageArray[inndex];
+      delete reminderFullArray[inndex];
 
       for (const i of document.querySelectorAll("#ul2 LI")) {
         if (i.textContent.slice(-6, -1) === time) {
@@ -534,8 +526,41 @@ function lineThrough() {
     if (element === deletedElement) {
       delete reminderTimeArray[indexCount];
       delete reminderMessageArray[indexCount];
+      delete reminderFullArray[indexCount];
     }
   }
+}
+
+// DRAG EVENT FUNCTIONS:
+// ##########################
+
+// DETECTING DRAG START:
+function dragStartDetect(element) {
+  element.addEventListener("dragstart", () => {
+    element.classList.add("dragging");
+  });
+  element.addEventListener("dragend", () => {
+    element.classList.remove("dragging");
+  });
+}
+
+// DRAG TO THE END OF THE LIST EVENT WITHIN TO-DO LIST UL:
+function dragWithinUl1() {
+  ulElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const itemBeingDragged = document.querySelector("#ul .dragging");
+    ulElement.appendChild(itemBeingDragged);
+  });
+}
+
+// DRAG TO THE END OF THE LIST EVENT WITHIN REMINDER LIST UL2:
+function dragWithinUl2() {
+  ulElement2.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const itemBeingDragged = document.querySelector("#ul2 .dragging");
+    ulElement2.appendChild(itemBeingDragged);
+    reminderListRefresher();
+  });
 }
 
 // A DUMMY FUNCTION TO ASK PERMISSION EVERY TIME WHEN LEAVING/CLOSING THE PAGE.
